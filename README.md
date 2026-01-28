@@ -39,3 +39,46 @@ These controls are perfect for audio plugins, apps, or any JUCE project where a 
 ```cpp
 #include "ImageKnob.h"
 #include "ImageButton.h"
+```
+---
+
+## Usage
+
+```cpp
+// Create knob
+auto knob = std::make_unique<ImageKnob>();
+
+// Filmstrip mode
+juce::Image filmstrip = juce::ImageFileFormat::loadFrom(BinaryData::knob_png, BinaryData::knob_pngSize);
+knob->setFilmstripImage(filmstrip, 32); // 32 frames
+
+// OR Rotating mode
+juce::Image singleImage = juce::ImageFileFormat::loadFrom(BinaryData::rotatingKnob_png, BinaryData::rotatingKnob_pngSize);
+knob->setRotatingImage(singleImage,
+                       -juce::MathConstants<float>::pi * 0.75f,
+                       juce::MathConstants<float>::pi * 0.75f);
+```
+---
+
+```cpp
+auto button = std::make_unique<ImageButton>("MyButton");
+
+// Load images for states
+juce::Image normal = juce::ImageFileFormat::loadFrom(BinaryData::buttonNormal_png, BinaryData::buttonNormal_pngSize);
+juce::Image hover  = juce::ImageFileFormat::loadFrom(BinaryData::buttonHover_png, BinaryData::buttonHover_pngSize);
+juce::Image down   = juce::ImageFileFormat::loadFrom(BinaryData::buttonDown_png, BinaryData::buttonDown_pngSize);
+
+// Set images
+button->setImages(normal, hover, down);
+```
+---
+
+## License
+
+This project is licensed under **GPLv3**, compatible with the JUCE GPL license.
+
+**Note:** This project uses JUCE, which is available under the GPL or a commercial license. By using these controls, your project must comply with JUCE’s GPL licensing if you do not have a commercial JUCE license.  
+
+You can freely use and modify this code in open-source JUCE projects. For commercial closed-source projects, a commercial JUCE license is required.
+
+---
